@@ -1,0 +1,40 @@
+﻿  Source.cpp
+C:\Users\dmitr\source\repos\SpcWr\SpcWr\Source.cpp(9,19): warning C4566: символ, представленный универсальным именем символа "\u00CF", невозможно представить в текущей кодовой странице (1251)
+C:\Users\dmitr\source\repos\SpcWr\SpcWr\Source.cpp(9,19): warning C4566: символ, представленный универсальным именем символа "\u00C5", невозможно представить в текущей кодовой странице (1251)
+C:\Users\dmitr\source\repos\SpcWr\SpcWr\Source.cpp(9,19): warning C4566: символ, представленный универсальным именем символа "\u00D0", невозможно представить в текущей кодовой странице (1251)
+C:\Users\dmitr\source\repos\SpcWr\SpcWr\Source.cpp(9,19): warning C4566: символ, представленный универсальным именем символа "\u00D8", невозможно представить в текущей кодовой странице (1251)
+C:\Users\dmitr\source\repos\SpcWr\SpcWr\Source.cpp(9,19): warning C4566: символ, представленный универсальным именем символа "\u00C0", невозможно представить в текущей кодовой странице (1251)
+C:\Users\dmitr\source\repos\SpcWr\SpcWr\Source.cpp(9,19): warning C4566: символ, представленный универсальным именем символа "\u00CE", невозможно представить в текущей кодовой странице (1251)
+C:\Users\dmitr\source\repos\SpcWr\SpcWr\Source.cpp(9,19): warning C4566: символ, представленный универсальным именем символа "\u00C3", невозможно представить в текущей кодовой странице (1251)
+C:\Users\dmitr\source\repos\SpcWr\SpcWr\Source.cpp(9,19): warning C4566: символ, представленный универсальным именем символа "\u00CC", невозможно представить в текущей кодовой странице (1251)
+C:\Users\dmitr\source\repos\SpcWr\SpcWr\Source.cpp(74,19): warning C4244: =: преобразование "double" в "LONG", возможна потеря данных
+C:\Users\dmitr\source\repos\SpcWr\SpcWr\Source.cpp(75,19): warning C4244: =: преобразование "double" в "LONG", возможна потеря данных
+C:\Users\dmitr\source\repos\SpcWr\SpcWr\Source.cpp(78,19): warning C4244: =: преобразование "double" в "LONG", возможна потеря данных
+C:\Users\dmitr\source\repos\SpcWr\SpcWr\Source.cpp(79,19): warning C4244: =: преобразование "double" в "LONG", возможна потеря данных
+C:\Users\dmitr\source\repos\SpcWr\SpcWr\Source.cpp(82,19): warning C4244: =: преобразование "double" в "LONG", возможна потеря данных
+C:\Users\dmitr\source\repos\SpcWr\SpcWr\Source.cpp(83,19): warning C4244: =: преобразование "double" в "LONG", возможна потеря данных
+C:\Users\dmitr\source\repos\SpcWr\SpcWr\Source.cpp(85,49): warning C4244: =: преобразование "double" в "LONG", возможна потеря данных
+C:\Users\dmitr\source\repos\SpcWr\SpcWr\Source.cpp(86,49): warning C4244: =: преобразование "double" в "LONG", возможна потеря данных
+C:\Users\dmitr\source\repos\SpcWr\SpcWr\Source.cpp(88,49): warning C4244: =: преобразование "double" в "LONG", возможна потеря данных
+C:\Users\dmitr\source\repos\SpcWr\SpcWr\Source.cpp(89,49): warning C4244: =: преобразование "double" в "LONG", возможна потеря данных
+C:\Users\dmitr\source\repos\SpcWr\SpcWr\Source.cpp(107,21): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\dmitr\source\repos\SpcWr\SpcWr\Source.cpp(131,34): warning C4244: =: преобразование "double" в "int", возможна потеря данных
+C:\Users\dmitr\source\repos\SpcWr\SpcWr\Source.cpp(134,34): warning C4244: =: преобразование "double" в "int", возможна потеря данных
+C:\Users\dmitr\source\repos\SpcWr\SpcWr\Source.cpp(137,35): warning C4244: =: преобразование "double" в "int", возможна потеря данных
+C:\Users\dmitr\source\repos\SpcWr\SpcWr\Source.cpp(140,35): warning C4244: =: преобразование "double" в "int", возможна потеря данных
+C:\Users\dmitr\source\repos\SpcWr\SpcWr\Source.cpp(170,21): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\dmitr\source\repos\SpcWr\SpcWr\Source.cpp(184,30): warning C4244: =: преобразование "double" в "int", возможна потеря данных
+C:\Users\dmitr\source\repos\SpcWr\SpcWr\Source.cpp(187,30): warning C4244: =: преобразование "double" в "int", возможна потеря данных
+C:\Users\dmitr\source\repos\SpcWr\SpcWr\Source.cpp(190,31): warning C4244: =: преобразование "double" в "int", возможна потеря данных
+C:\Users\dmitr\source\repos\SpcWr\SpcWr\Source.cpp(193,31): warning C4244: =: преобразование "double" в "int", возможна потеря данных
+C:\Users\dmitr\source\repos\SpcWr\SpcWr\Source.cpp(375,20): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\dmitr\source\repos\SpcWr\SpcWr\Source.cpp(408,116): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\dmitr\source\repos\SpcWr\SpcWr\Source.cpp(408,87): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\dmitr\source\repos\SpcWr\SpcWr\Source.cpp(408,58): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\dmitr\source\repos\SpcWr\SpcWr\Source.cpp(408,29): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\dmitr\source\repos\SpcWr\SpcWr\Source.cpp(444,12): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+C:\Users\dmitr\source\repos\SpcWr\SpcWr\Source.cpp(549,88): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\dmitr\source\repos\SpcWr\SpcWr\Source.cpp(549,67): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\dmitr\source\repos\SpcWr\SpcWr\Source.cpp(549,46): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\dmitr\source\repos\SpcWr\SpcWr\Source.cpp(549,25): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+  SpcWr.vcxproj -> C:\Users\dmitr\source\repos\SpcWr\Debug\SpcWr.exe
