@@ -6,7 +6,7 @@ using namespace std;
 
 HINSTANCE hInst; 	
 LPCTSTR szWindowClass = "QWERTY";
-LPCTSTR szTitle = "ÏÅÐØÀ ÏÐÎÃÐÀÌÀ";
+LPCTSTR szTitle = "SpaceWar";
 
 double dt = 1;
 double G = 0.5;
@@ -27,8 +27,8 @@ class Star {
 public:
 	double x;
 	double y;
-	double r = 3;
-	double m = 10;
+	double r = 15;
+	double m = 1500;
 };
 
 class Bullet {
@@ -44,8 +44,23 @@ public:
 
 };
 
+class EngineParticle {
+public:
+	double x;
+	double y;
+	double vx = 0;
+	double vy = 0;
+	double r = 3;
+	double m = 1;
+	double LifeTime = 15;
+	double Time = 0;
+};
+
 vector <Bullet> Blts;
 vector <Bullet> Blts2;
+
+vector<EngineParticle> Prts1;
+vector<EngineParticle> Prts2;
 
 class Ship {
 public:
@@ -66,6 +81,17 @@ public:
 		tBlt.vx =  cos(direction * 3.14 / 180) * 6;
 		tBlt.vy = -sin(direction * 3.14 / 180) * 6;
 		bullets.push_back(tBlt);
+	}
+
+	void EngineParticles(vector <EngineParticle> &particles) {
+
+		EngineParticle tPrt;
+		tPrt.x = (angles[2].x + angles[3].x) / 2 + (rand()%11-5);
+		tPrt.y = (angles[2].y + angles[3].y) / 2 + (rand()%11-5);
+		tPrt.vx = cos(direction * 3.14 / 180 + 180) * 2;
+		tPrt.vy = -sin(direction * 3.14 / 180 + 180) * 2;
+
+		particles.push_back(tPrt);
 	}
 
 	void GetAngles() {
@@ -142,27 +168,31 @@ public:
 	}
 
 	void ChangeDirection() {
-		if (PlayerDirection - direction < 10)
-			direction = PlayerDirection;
-		direction += (PlayerDirection - direction) / 15;
+
+		if (((360 - PlayerDirection) + direction) % 360 < 180)
+			direction -= 2;
+		else direction += 2;
+
 	}
 	
 	void ShootPlayer() {
-		if (abs(direction - PlayerDirection) < 20)
+		if (abs(direction - PlayerDirection) < 10)
 		if (Blts2.empty())
 			Shoot(Blts2);
-		else if (Blts2.back().Time > 40)
+		else if (Blts2.back().Time > 60)
 			Shoot(Blts2);
 	}
 
 	void MoveToPlayer(){
 
-		if (sqrt(vx * vx + vy * vy) > 5) {
+		if (sqrt(vx * vx + vy * vy) > 4) {
 			vx *= 0.9;
 			vy *= 0.9;
 		}
 			vx += cos(PlayerDirection * 3.14 / 180) * 0.2;
 			vy -= sin(PlayerDirection * 3.14 / 180) * 0.2;
+
+			EngineParticles(Prts2);
 
 	}
 
@@ -196,7 +226,7 @@ public:
 
 	void RunFromSun() {
 		double DistanceToSun = sqrt(delta_x_s * delta_x_s + delta_y_s * delta_y_s);
-		if (DistanceToSun < 180) {
+		if (DistanceToSun < 150) {
 			NearSun = 1;
 		}
 		else NearSun = 0;
@@ -206,12 +236,15 @@ public:
 				direction += 1;
 
 			direction -= (89 / (SunDirection - direction));
+
+
 			vx += 0.5 * cos(direction * 3.14 / 180);
 			vy -= 0.5 * sin(direction * 3.14 / 180);
 			if (sqrt(vx * vx + vy * vy) > 5) {
 				vx *= 0.9;
 				vy *= 0.9;
 			}
+			EngineParticles(Prts2);
 		}
 	}
 
@@ -301,11 +334,55 @@ void StepBlt(Star star, Bullet& blt) {
 	
 }
 
+void StepPrt(Star star, EngineParticle& prt) {
+	double a, ax, ay, dx, dy, r;
+	dx = star.x - prt.x;
+	dy = star.y - prt.y;
+
+	r = dx * dx + dy * dy;
+	a = G * star.m / r;
+
+	r = sqrt(r);
+	ax = a * dx / r;
+	ay = a * dy / r;
+
+	prt.vx += ax * dt;
+	prt.vy += ay * dt;
+
+	prt.x += prt.vx * dt;
+	prt.y += prt.vy * dt;
+	prt.Time += 1;
+
+}
+
+void DrawBitmap(HDC hdc, HBITMAP hBitmap, int xStart, int yStart)
+{
+	BITMAP bm;
+	HDC hdcMem;
+	DWORD dwSize;
+	POINT ptSize, ptOrg;
+	hdcMem = CreateCompatibleDC(hdc);
+	SelectObject(hdcMem, hBitmap);
+	SetMapMode(hdcMem, GetMapMode(hdc));
+	GetObject(hBitmap, sizeof(BITMAP), (LPVOID)&bm);
+	ptSize.x = bm.bmWidth;
+	ptSize.y = bm.bmHeight;
+	DPtoLP(hdc, &ptSize, 1);
+	ptOrg.x = 0;
+	ptOrg.y = 0;
+	DPtoLP(hdcMem, &ptOrg, 1);
+	BitBlt(
+		hdc, xStart, yStart, ptSize.x, ptSize.y,
+		hdcMem, ptOrg.x, ptOrg.y, SRCCOPY
+	);
+	DeleteDC(hdcMem);
+}
+
 void Reset(RECT &rt, Star &MyStar, Enemy &EnemyShip, Player &MyShip) {
 	MyStar.x = rt.right/2;
 	MyStar.y = rt.bottom/2;
-	MyStar.m = 1300;
-	MyStar.r = 10;
+	MyStar.m = 1500;
+	MyStar.r = 15;
 
 	MyShip.x = 10;
 	MyShip.y = 30;
@@ -322,11 +399,14 @@ void Reset(RECT &rt, Star &MyStar, Enemy &EnemyShip, Player &MyShip) {
 
 	Blts.clear();
 	Blts2.clear();
+	Prts1.clear();
+	Prts2.clear();
 
 }
 
 ATOM MyRegisterClass(HINSTANCE hInstance)
 {
+
 	WNDCLASSEX wcex;
 	wcex.cbSize = sizeof(WNDCLASSEX);
 	wcex.style = CS_HREDRAW | CS_VREDRAW; 		
@@ -336,7 +416,8 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
 	wcex.hInstance = hInstance; 			
 	wcex.hIcon = LoadIcon(NULL, IDI_HAND); 		
 	wcex.hCursor = LoadCursor(NULL, IDC_ARROW); 	
-	wcex.hbrBackground = GetSysColorBrush(COLOR_WINDOW + 1); 
+	//wcex.hbrBackground = GetSysColorBrush(COLOR_WINDOW + 2); 
+	wcex.hbrBackground = CreatePatternBrush(LoadBitmap(GetModuleHandle(0), MAKEINTRESOURCE(102)));
 	wcex.lpszMenuName = NULL; 				
 	wcex.lpszClassName = szWindowClass; 	
 	wcex.hIconSm = NULL;
@@ -355,8 +436,8 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 		WS_OVERLAPPEDWINDOW,			
 		50, 			
 		20,			
-		1000, 			
-		900, 			
+		1200, 			
+		699, 			
 		NULL, 					
 		NULL, 					
 		hInstance, 				
@@ -403,21 +484,69 @@ void DrawBlt(RECT rt, Star MyStar, HDC &hdc, vector <Bullet> &bullets) {
 
 		HBRUSH hbr;
 
-		hbr = CreateSolidBrush(RGB(200, 100, 50));
+		hbr = CreateSolidBrush(RGB(70, 220, 180));
 		SelectObject(hdc, hbr);
 		Ellipse(hdc, bullets[i].x - bullets[i].r, bullets[i].y - bullets[i].r, bullets[i].x + bullets[i].r, bullets[i].y + bullets[i].r);
 		DeleteObject(hbr);
 	}
 }
 
-void CheckButtons(bool UP, bool DOWN, bool LEFT, bool RIGHT, bool SPACE, Player &MyShip) {
-	if (sqrt(MyShip.vx * MyShip.vx + MyShip.vy * MyShip.vy) > 5) {
+void DrawPrt(RECT rt, Star MyStar, HDC& hdc, vector <EngineParticle>& particles) {
+	for (int i = 0; i < particles.size(); i++) {
+		
+		if (particles[i].x > rt.right || particles[i].x < 0 || particles[i].y>rt.bottom || particles[i].y < 0) {
+			particles.erase(particles.cbegin() + i);
+			continue;
+		}
+		if (particles[i].Time > particles[i].LifeTime) {
+			particles.erase(particles.cbegin() + i);
+			continue;
+		}
+
+		StepPrt(MyStar, particles[i]);
+
+		if ((particles[i].x - MyStar.x) < 8 && (particles[i].x - MyStar.x) > -8 && (particles[i].y - MyStar.y) < 8 && (particles[i].y - MyStar.y) > -8) {
+			particles.erase(particles.cbegin() + i);
+			continue;
+		}
+
+		HBRUSH hbr;
+
+		
+		hbr = CreateSolidBrush(RGB(rand()%100+150, 200, 200));
+		SelectObject(hdc, hbr);
+		Ellipse(hdc, particles[i].x - particles[i].r, particles[i].y - particles[i].r, particles[i].x + particles[i].r, particles[i].y + particles[i].r);
+		DeleteObject(hbr);
+	}
+}
+
+void Stars(HDC& hdc, POINT arr[]) {
+	for (int i = 0; i < 150; i++) {
+		int tx = arr[i].x;
+		int ty = arr[i].y;
+		HBRUSH hbr = CreateSolidBrush(RGB(250, 250, 250));
+		SelectObject(hdc, hbr);
+		Ellipse(hdc, tx - 2, ty - 2, tx + 2, ty + 2);
+		DeleteObject(hbr);
+	}
+}
+
+void DrawSun(HDC &hdc, RECT rt) {
+	HBITMAP hBit = LoadBitmap(GetModuleHandle(0),MAKEINTRESOURCE(102));
+	DrawBitmap(hdc, hBit, rt.right/2-20, rt.bottom/2-20 );
+	DeleteObject(hBit);
+}
+
+void CheckButtons(bool UP, bool DOWN, bool LEFT, bool RIGHT, bool SPACE, Player &MyShip, int randNum1000) {
+	if (sqrt(MyShip.vx * MyShip.vx + MyShip.vy * MyShip.vy) > 4) {
 		MyShip.vx *= 0.9;
 		MyShip.vy *= 0.9;
 	}
 	if(UP){
 		MyShip.vx += 0.05 * cos(MyShip.direction * 3.14 / 180);
 		MyShip.vy -= 0.05 * sin(MyShip.direction * 3.14 / 180);
+		if(randNum1000 > 600)
+		MyShip.EngineParticles(Prts1);
 	}
 	if(RIGHT) {
 		MyShip.direction -= 2;
@@ -432,16 +561,22 @@ void CheckButtons(bool UP, bool DOWN, bool LEFT, bool RIGHT, bool SPACE, Player 
 	if (SPACE) {
 		if (Blts.empty())
 			MyShip.Shoot(Blts);
-		else if (Blts.back().Time > 25)
+		else if (Blts.back().Time > 50)
 			MyShip.Shoot(Blts);
 	}
 }
 
+void FillStarsArray(RECT rt, POINT arr[]) {
+	for (int i = 0; i < 150; i++) {
+		arr[i].x = rand() % rt.right;
+		arr[i].y = rand() % rt.bottom;
+	}
+}
 
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
-	srand(time(NULL));
+	//srand(time(NULL));
 	static bool MFlag = 0;
 	static Star MyStar;
 	static Player MyShip;
@@ -454,6 +589,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	HDC hdc;
 	RECT rt;
 	char buffer[50];
+	static POINT starsArr[150];
 	static bool LEFT, UP, DOWN, RIGHT, SPACE;
 	static int PlayerScore = 0, EnemyScore = 0;
 	static HBRUSH hbr = CreateSolidBrush(RGB(100, 150, 150));
@@ -464,7 +600,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	DOWN = GetAsyncKeyState(VK_DOWN);
 	SPACE = GetAsyncKeyState(VK_SPACE);
 
-	CheckButtons(UP, DOWN, LEFT, RIGHT, SPACE, MyShip);
+	CheckButtons(UP, DOWN, LEFT, RIGHT, SPACE, MyShip, rand()%1000+1);
 
 
 	GetClientRect(hWnd, &rt);
@@ -488,16 +624,19 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		GetClientRect(hWnd, &rt);
 		MyStar.x = rt.right/2;
 		MyStar.y = rt.bottom/2;
-		MyStar.m = 1300;
-		MyStar.r = 10;
 
 		EnemyShip.x = rt.right - 20;
 		EnemyShip.y = rt.bottom - 20;
 		EnemyShip.direction = 135;
+		FillStarsArray(rt, starsArr);
 		break;
 	case WM_PAINT: 				
 		hdc = BeginPaint(hWnd, &ps); 	
 		GetClientRect(hWnd, &rt); 		
+
+	//	DrawSun(hdc, rt);
+
+	//	Stars(hdc, starsArr);
 
 		Step(MyStar, MyShip);
 		if (MyShip.x > rt.right) {
@@ -571,7 +710,11 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		DrawBlt(rt, MyStar, hdc, Blts);
 		DrawBlt(rt, MyStar, hdc, Blts2);
 
-		Sleep(20);
+		DrawPrt(rt, MyStar, hdc, Prts1);
+		DrawPrt(rt, MyStar, hdc, Prts2);
+
+		Sleep(12);
+
 		ReleaseDC(hWnd, hdc);
 		EndPaint(hWnd, &ps); 		
 		break;

@@ -1,0 +1,39 @@
+﻿  Source.cpp
+C:\Users\dmitr\source\repos\SpcWr\SpcWr\Source.cpp(100,19): warning C4244: =: преобразование "double" в "LONG", возможна потеря данных
+C:\Users\dmitr\source\repos\SpcWr\SpcWr\Source.cpp(101,19): warning C4244: =: преобразование "double" в "LONG", возможна потеря данных
+C:\Users\dmitr\source\repos\SpcWr\SpcWr\Source.cpp(104,19): warning C4244: =: преобразование "double" в "LONG", возможна потеря данных
+C:\Users\dmitr\source\repos\SpcWr\SpcWr\Source.cpp(105,19): warning C4244: =: преобразование "double" в "LONG", возможна потеря данных
+C:\Users\dmitr\source\repos\SpcWr\SpcWr\Source.cpp(108,19): warning C4244: =: преобразование "double" в "LONG", возможна потеря данных
+C:\Users\dmitr\source\repos\SpcWr\SpcWr\Source.cpp(109,19): warning C4244: =: преобразование "double" в "LONG", возможна потеря данных
+C:\Users\dmitr\source\repos\SpcWr\SpcWr\Source.cpp(111,49): warning C4244: =: преобразование "double" в "LONG", возможна потеря данных
+C:\Users\dmitr\source\repos\SpcWr\SpcWr\Source.cpp(112,49): warning C4244: =: преобразование "double" в "LONG", возможна потеря данных
+C:\Users\dmitr\source\repos\SpcWr\SpcWr\Source.cpp(114,49): warning C4244: =: преобразование "double" в "LONG", возможна потеря данных
+C:\Users\dmitr\source\repos\SpcWr\SpcWr\Source.cpp(115,49): warning C4244: =: преобразование "double" в "LONG", возможна потеря данных
+C:\Users\dmitr\source\repos\SpcWr\SpcWr\Source.cpp(157,34): warning C4244: =: преобразование "double" в "int", возможна потеря данных
+C:\Users\dmitr\source\repos\SpcWr\SpcWr\Source.cpp(160,34): warning C4244: =: преобразование "double" в "int", возможна потеря данных
+C:\Users\dmitr\source\repos\SpcWr\SpcWr\Source.cpp(163,35): warning C4244: =: преобразование "double" в "int", возможна потеря данных
+C:\Users\dmitr\source\repos\SpcWr\SpcWr\Source.cpp(166,35): warning C4244: =: преобразование "double" в "int", возможна потеря данных
+C:\Users\dmitr\source\repos\SpcWr\SpcWr\Source.cpp(214,30): warning C4244: =: преобразование "double" в "int", возможна потеря данных
+C:\Users\dmitr\source\repos\SpcWr\SpcWr\Source.cpp(217,30): warning C4244: =: преобразование "double" в "int", возможна потеря данных
+C:\Users\dmitr\source\repos\SpcWr\SpcWr\Source.cpp(220,31): warning C4244: =: преобразование "double" в "int", возможна потеря данных
+C:\Users\dmitr\source\repos\SpcWr\SpcWr\Source.cpp(223,31): warning C4244: =: преобразование "double" в "int", возможна потеря данных
+C:\Users\dmitr\source\repos\SpcWr\SpcWr\Source.cpp(294,12): warning C4244: return: преобразование "WPARAM" в "int", возможна потеря данных
+C:\Users\dmitr\source\repos\SpcWr\SpcWr\Source.cpp(362,8): warning C4101: dwSize: неиспользованная локальная переменная
+C:\Users\dmitr\source\repos\SpcWr\SpcWr\Source.cpp(489,116): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\dmitr\source\repos\SpcWr\SpcWr\Source.cpp(489,87): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\dmitr\source\repos\SpcWr\SpcWr\Source.cpp(489,58): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\dmitr\source\repos\SpcWr\SpcWr\Source.cpp(489,29): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\dmitr\source\repos\SpcWr\SpcWr\Source.cpp(518,130): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\dmitr\source\repos\SpcWr\SpcWr\Source.cpp(518,97): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\dmitr\source\repos\SpcWr\SpcWr\Source.cpp(518,64): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\dmitr\source\repos\SpcWr\SpcWr\Source.cpp(518,31): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\dmitr\source\repos\SpcWr\SpcWr\Source.cpp(688,88): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\dmitr\source\repos\SpcWr\SpcWr\Source.cpp(688,67): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\dmitr\source\repos\SpcWr\SpcWr\Source.cpp(688,46): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\dmitr\source\repos\SpcWr\SpcWr\Source.cpp(688,25): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+  Создание кода
+  1 of 187 functions ( 0.5%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    1 functions had inline decision re-evaluated but remain unchanged
+  Создание кода завершено
+  SpcWr.vcxproj -> C:\Users\dmitr\source\repos\SpcWr\x64\Release\SpcWr.exe
